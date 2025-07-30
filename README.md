@@ -1,25 +1,40 @@
-# py-hausdorff
-[![Build Status][travis-image]][travis-url]  [![PyPI version][pypi-image]][pypi-url]  [![PyPI download][download-image]][pypi-url]
 
-Fast computation of Hausdorff distance in Python. 
+# Hausdorff
 
-This code implements the algorithm presented in _An Efficient Algorithm for Calculating the Exact Hausdorff Distance_ (__DOI:__ [10.1109/TPAMI.2015.2408351](https://doi.org/10.1109/TPAMI.2015.2408351)) by _Aziz and Hanbury_.
+[![Badge-Version]][Package] [![Badge-Downloads]][Package]
 
+Implementation of the [Hausdorff Distance] algorithm presented in the  
+paper '[*An Efficient Algorithm for Calculating the Exact Hausdorff Distance*][Paper]' <sup>[1]</sup>  
+by [Abdel Aziz Taha] & [Allan Hanbury].
+
+<br/>
+
+**[1]** DOI: `10.1109/TPAMI.2015.2408351`
+
+<br/>
 
 ## Installation
 
-Via [PyPI](https://pypi.org/project/hausdorff/):
+### Package
+
+You can install the [PyPi Package][Package].
 
 ```bash
 pip install hausdorff
 ```
-Or you can clone this repository and install it manually: 
+
+### Manual
+
+Or clone and set it up yourself.
 
 ```bash
 python setup.py install
 ```
 
-## Example Usage
+<br/>
+
+## Usage
+
 The main functions is: 
 
 `hausdorff_distance(np.ndarray[:,:] X, np.ndarray[:,:] Y)`
@@ -30,7 +45,9 @@ Which computes the _Hausdorff distance_ between the rows of `X` and `Y` using th
 __Note:__ The haversine distance is calculated assuming lat, lng coordinate ordering and assumes
  the first two coordinates of each point are latitude and longitude respectively.
  
- ### Basic Usage
+<br/>
+
+ ### Basic
 
 ```python
 import numpy as np
@@ -58,7 +75,9 @@ Y = rand_lat_lng(250)
 print("Hausdorff haversine test: {0}".format( hausdorff_distance(X, Y, distance="haversine") ))
 ```
 
-### Custom distance function
+<br/>
+
+### Custom
 
 The distance function is used to calculate the distances between the rows of the input 2-dimensional arrays . For optimal performance, this custom distance function should be decorated with `@numba` in [nopython mode](https://numba.pydata.org/numba-doc/latest/user/jit.html).
 
@@ -98,8 +117,11 @@ def custom_dist(array_x, array_y):
 print(f"Hausdorff custom crazy test: {hausdorff_distance(X, Y, distance=custom_dist)}")
 ```
 
-[travis-image]: https://travis-ci.org/mavillan/py-hausdorff.svg?branch=master
-[travis-url]: https://travis-ci.org/mavillan/py-hausdorff
-[pypi-image]: http://img.shields.io/pypi/v/hausdorff.svg
-[pypi-url]: https://pypi.org/project/hausdorff/
-[download-image]: http://img.shields.io/pypi/dm/hausdorff.svg
+[Badge-Downloads]: http://img.shields.io/pypi/dm/hausdorff.svg?style=for-the-badge
+[Badge-Version]: http://img.shields.io/pypi/v/hausdorff.svg?style=for-the-badge
+
+[Hausdorff Distance]: https://en.wikipedia.org/wiki/Hausdorff_distance
+[Abdel Aziz Taha]: https://ieeexplore.ieee.org/author/37085470224
+[Allan Hanbury]: https://ieeexplore.ieee.org/author/37269249300
+[Package]: https://pypi.org/project/hausdorff/
+[Paper]: https://ieeexplore.ieee.org/document/7053955
